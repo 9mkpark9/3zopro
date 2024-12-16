@@ -2,19 +2,21 @@ import tkinter as tk
 from tkinter import messagebox
 import cv2
 from keras_facenet import FaceNet
-from mtcnn import MTCNN
+import mediapipe as mp
 import numpy as np
 import requests
-import threading
 
-# FaceNet과 MTCNN 초기화
+# FaceNet 초기화
 facenet = FaceNet()
-detector = MTCNN()
+
+# MediaPipe Face Detection 초기화
+mp_face_detection = mp.solutions.face_detection
+mp_drawing = mp.solutions.drawing_utils
 
 # 서버 URL
-SERVER_URL = "http://localhost:9000"
+SERVER_URL = "http://220.90.180.118:9000" #웅빈 ip
 
-# 회원가입 얼굴 캡처 함수
+# 얼굴 임베딩 생성 함수 (MediaPipe 사용)
 def capture_face_embedding():
     cap = cv2.VideoCapture(0)
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)  # 해상도 설정
@@ -25,27 +27,38 @@ def capture_face_embedding():
     total_images = 50  # 캡처할 이미지 수
 
     print("Capturing face images. Press 'q' to stop.")
-    while num_images < total_images:
-        ret, frame = cap.read()
-        if not ret:
-            break
+    with mp_face_detection.FaceDetection(model_selection=1, min_detection_confidence=0.5) as face_detection:
+        while num_images < total_images:
+            ret, frame = cap.read()
+            if not ret:
+                break
 
-        faces = detector.detect_faces(frame)
-        if faces:
-            x, y, w, h = faces[0]['box']
-            face = frame[y:y + h, x:x + w]
-            face_resized = cv2.resize(face, (160, 160))
-            embedding = facenet.embeddings(np.expand_dims(face_resized, axis=0))[0]
-            embeddings.append(embedding)
-            num_images += 1
+            # MediaPipe로 얼굴 탐지
+            rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            results = face_detection.process(rgb_frame)
 
-            # 진행 상태 표시
-            cv2.putText(frame, f"Captured: {num_images}/{total_images}", (10, 30),
-                        cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+            if results.detections:
+                for detection in results.detections:
+                    bboxC = detection.location_data.relative_bounding_box
+                    h, w, _ = frame.shape
+                    x, y, width, height = int(bboxC.xmin * w), int(bboxC.ymin * h), int(bboxC.width * w), int(bboxC.height * h)
 
-        cv2.imshow("Face Registration", frame)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
+                    # 얼굴 영역 추출
+                    face = frame[y:y + height, x:x + width]
+                    face_resized = cv2.resize(face, (160, 160))
+
+                    # FaceNet으로 임베딩 생성
+                    embedding = facenet.embeddings(np.expand_dims(face_resized, axis=0))[0]
+                    embeddings.append(embedding)
+                    num_images += 1
+
+                    # 진행 상태 표시
+                    cv2.putText(frame, f"Captured: {num_images}/{total_images}", (10, 30),
+                                cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+
+            cv2.imshow("Face Registration", frame)
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
 
     cap.release()
     cv2.destroyAllWindows()
