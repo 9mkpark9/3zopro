@@ -3,16 +3,19 @@ from tkinter import messagebox
 import cv2
 import threading
 from keras_facenet import FaceNet
-from mtcnn import MTCNN
+import mediapipe as mp
 import numpy as np
 import requests
 import time
 
-SERVER_URL = "http://localhost:9000"
+# 서버 URL
+SERVER_URL = "http://220.90.180.118:9000"
 
-# FaceNet과 MTCNN 초기화
+# FaceNet 초기화
 facenet = FaceNet()
-detector = MTCNN()
+
+# MediaPipe Face Detection 초기화
+mp_face_detection = mp.solutions.face_detection
 
 def show_message(title, message):
     app.after(0, lambda: messagebox.showinfo(title, message))
@@ -51,36 +54,53 @@ class FaceProcessingThread(threading.Thread):
         self.running = True
 
     def run(self):
-        while self.running:
-            frame = self.video_capture.read()
-            if frame is not None:
-                faces = detector.detect_faces(frame)
-                if faces:
-                    largest_face = max(faces, key=lambda f: f['box'][2] * f['box'][3])
-                    x, y, w, h = largest_face['box']
-                    face = frame[max(0, y):max(0, y + h), max(0, x):max(0, x + w)]
-                    face_resized = cv2.resize(face, (160, 160))
-                    embedding = facenet.embeddings(np.expand_dims(face_resized, axis=0))[0]
+        with mp_face_detection.FaceDetection(min_detection_confidence=0.5) as face_detection:
+            while self.running:
+                frame = self.video_capture.read()
+                if frame is not None:
+                    rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                    results = face_detection.process(rgb_frame)
 
-                    try:
-                        data = {"id": self.user_id, "embedding": embedding.tolist()}
-                        response = requests.post(f"{SERVER_URL}/verify-face", json=data)
-                        json_response = response.json()
+                    if results.detections:
+                        # 가장 큰 얼굴(가장 가까운 얼굴) 선택
+                        largest_face = max(
+                            results.detections,
+                            key=lambda det: det.location_data.relative_bounding_box.width *
+                                            det.location_data.relative_bounding_box.height
+                        )
 
-                        if response.status_code == 200:
-                            name = json_response.get("name", "Unknown")
-                            self.text_data["message"] = f"Welcome, {name}"
-                            self.text_data["color"] = (0, 255, 0)  # 초록색
-                        else:
-                            self.text_data["message"] = "Face mismatch"
-                            self.text_data["color"] = (0, 0, 255)  # 빨간색
-                    except Exception as e:
-                        self.text_data["message"] = f"Error: {e}"
-                        self.text_data["color"] = (255, 255, 0)  # 노란색
-                else:
-                    self.text_data["message"] = "No face detected"
-                    self.text_data["color"] = (255, 255, 255)  # 흰색
-            time.sleep(0.1)  # 약간의 딜레이 추가
+                        # 얼굴 영역 계산
+                        bboxC = largest_face.location_data.relative_bounding_box
+                        h, w, _ = frame.shape
+                        x, y, width, height = int(bboxC.xmin * w), int(bboxC.ymin * h), int(bboxC.width * w), int(bboxC.height * h)
+
+                        # 얼굴 영역 추출
+                        face = frame[max(0, y):max(0, y + height), max(0, x):max(0, x + width)]
+                        face_resized = cv2.resize(face, (160, 160))
+
+                        # FaceNet으로 임베딩 생성
+                        embedding = facenet.embeddings(np.expand_dims(face_resized, axis=0))[0]
+
+                        try:
+                            # 서버에 임베딩 전송
+                            data = {"id": self.user_id, "embedding": embedding.tolist()}
+                            response = requests.post(f"{SERVER_URL}/verify-face", json=data)
+                            json_response = response.json()
+
+                            if response.status_code == 200:
+                                name = json_response.get("name", "Unknown")
+                                self.text_data["message"] = f"Welcome, {name}"
+                                self.text_data["color"] = (0, 255, 0)  # 초록색
+                            else:
+                                self.text_data["message"] = "Face mismatch"
+                                self.text_data["color"] = (0, 0, 255)  # 빨간색
+                        except Exception as e:
+                            self.text_data["message"] = f"Error: {e}"
+                            self.text_data["color"] = (255, 255, 0)  # 노란색
+                    else:
+                        self.text_data["message"] = "No face detected"
+                        self.text_data["color"] = (255, 255, 255)  # 흰색
+                time.sleep(0.1)  # 약간의 딜레이 추가
 
     def stop(self):
         self.running = False
@@ -129,6 +149,7 @@ def login_user():
     except Exception as e:
         show_message("Error", f"An error occurred: {e}")
 
+# 로그인 UI
 app = tk.Tk()
 app.title("Login")
 
