@@ -33,7 +33,8 @@ class VideoCaptureThread(threading.Thread):
         while self.running:
             ret, frame = self.capture.read()
             if ret:
-                self.frame = frame
+                # 미러 모드 적용 (수평 반전)
+                self.frame = cv2.flip(frame, 1)
             else:
                 print("Error: Failed to grab frame.")
         self.capture.release()
@@ -119,7 +120,7 @@ def verify_face_live(user_id):
             if frame is not None:
                 # 텍스트 출력
                 cv2.putText(frame, text_data["message"], (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, text_data["color"], 2)
-                cv2.imshow("Face Verification", frame)
+                cv2.imshow("Face Verification (Mirrored)", frame)
 
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
