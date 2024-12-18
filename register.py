@@ -24,7 +24,7 @@ def capture_face_embedding():
 
     embeddings = []
     num_images = 0
-    total_images = 50  # 캡처할 이미지 수
+    total_images = 100  # 캡처할 이미지 수
 
     print("Capturing face images. Press 'q' to stop.")
     with mp_face_detection.FaceDetection(model_selection=1, min_detection_confidence=0.5) as face_detection:
