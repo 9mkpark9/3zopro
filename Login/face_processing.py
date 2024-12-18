@@ -29,14 +29,20 @@ class FaceProcessingThread(threading.Thread):
         self.start_time = time.time()
         self.blink_count = 0
         self.total_sleep_time = 0
-        self.total_turn_time = 0
         self.sleep_start = None
-        self.turn_start = None
-        self.calibration_ears = []
-        self.ear_thresh = None
-        self.blink_start = None
+        self.low_ear_count = 0  # EAR 낮은 상태 카운트 초기화
         self.eyes_closed = False
-        self.final_focus_score = 0
+        self.ear_thresh = None
+        self.blink_start = None  # 눈 감김 시작 시간 초기화
+
+        # 캘리브레이션 관련 변수
+        self.calibration_ears = []  # EAR 캘리브레이션 데이터를 저장
+        self.calibration_time = 5.0  # 캘리브레이션 지속 시간
+
+        # 고개 방향 관련 변수 초기화
+        self.turn_start = None  # 고개 돌리기 시작한 시간
+        self.total_turn_time = 0  # 고개 돌린 총 시간
+
 
     def run(self):
         with mp_face_detection.FaceDetection(min_detection_confidence=0.5) as face_detection, \
@@ -84,9 +90,9 @@ class FaceProcessingThread(threading.Thread):
                             head_direction, self.turn_start, self.total_turn_time
                         )
 
-                        self.ear_thresh, self.blink_start, self.blink_count, self.eyes_closed, state, calibration_message = detect_eye_blink(
+                        self.ear_thresh, self.blink_start, self.blink_count, self.eyes_closed, self.total_sleep_time, self.sleep_start, state, calibration_message, self.low_ear_count = detect_eye_blink(
                             facial_landmarks, frame.shape[1], frame.shape[0], self.ear_thresh, 2.0, 5.0,
-                            self.start_time, self.calibration_ears, self.blink_start, self.blink_count, self.eyes_closed
+                            self.start_time, self.calibration_ears, self.blink_start, self.blink_count, self.eyes_closed, self.total_sleep_time, self.sleep_start, self.low_ear_count
                         )
 
                         elapsed_time = time.time() - self.start_time
@@ -125,8 +131,3 @@ class FaceProcessingThread(threading.Thread):
         self.running = False
         self.join()
         print(f"Final Focus Score: {self.final_focus_score}")
-
-
-
-
-
