@@ -25,6 +25,6 @@ def detect_head_turn(facial_landmarks, w, h):
     if 55 <= angle <= 125:
         return "center"
     elif angle < 55:
-        return "left"
-    else:
         return "right"
+    else:
+        return "left"
