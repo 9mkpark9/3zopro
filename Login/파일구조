@@ -1,8 +1,0 @@
-project/
-│
-├── video_capture.py       # 비디오 캡처 관련 클래스
-├── face_processing.py     # 얼굴 처리 및 집중도 계산
-├── utils.py               # 유틸리티 함수 (예: 비밀번호 암호화)
-├── live_verification.py   # 실시간 얼굴 인증
-├── login.py               # 로그인 프로세스
-└── main.py                # 프로그램 실행 진입점
