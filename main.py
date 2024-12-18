@@ -1,85 +1,99 @@
-import cv2
-import mediapipe as mp
-import time
-from eye_blink import detect_eye_blink
-from head_turn import detect_head_turn
-from PIL import Image, ImageDraw, ImageFont
-import numpy as np
+from flask import Flask, request, jsonify
+import os
+import pickle
+from scipy.spatial.distance import cosine
 
-# Initialize Mediapipe Face Mesh
-mp_face_mesh = mp.solutions.face_mesh
-face_mesh = mp_face_mesh.FaceMesh(
-    static_image_mode=False, max_num_faces=1, refine_landmarks=True, min_detection_confidence=0.5
-)
+app = Flask(__name__)
 
-# Draw Korean text using PIL
-def draw_text_kor(image, text, position):
-    # Convert OpenCV image (BGR) to Pillow image (RGB)
-    pil_image = Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
-    draw = ImageDraw.Draw(pil_image)
-    
-    # Use a font that supports Korean (ensure you have a Korean font like NanumGothic)
-    font = ImageFont.truetype("C:/Windows/Fonts/NGULIM.TTF", 32)  # You can replace with the font path on your system
-    
-    # Draw text on image
-    draw.text(position, text, font=font, fill=(0, 0, 0))
+# 데이터 저장 디렉토리
+DATA_DIR = "data"
+os.makedirs(DATA_DIR, exist_ok=True)
 
-    # Convert back to OpenCV image (BGR)
-    return cv2.cvtColor(np.array(pil_image), cv2.COLOR_RGB2BGR)
+# 사용자 데이터 저장 함수
+def save_user_data(user_id, user_data):
+    with open(os.path.join(DATA_DIR, f"{user_id}.pkl"), "wb") as f:
+        pickle.dump(user_data, f)
 
-def main():
-    SLEEP_TIME = 5.0
-    CALIBRATION_TIME = 5.0
-    calibration_start = time.time()
-    calibration_ears = []
-    EAR_THRESH = None
-    blink_start = None
+# 사용자 데이터 로드 함수
+def load_user_data(user_id):
+    try:
+        with open(os.path.join(DATA_DIR, f"{user_id}.pkl"), "rb") as f:
+            return pickle.load(f)
+    except FileNotFoundError:
+        return None
 
-    cap = cv2.VideoCapture(0)
-    if not cap.isOpened():
-        print("카메라를 열 수 없습니다.")
-        return
+# 회원가입 API
+@app.route('/register', methods=['POST'])
+def register():
+    data = request.json
+    user_id = data.get("id")
+    password = data.get("password")
+    name = data.get("name")
+    embedding = data.get("embedding")
 
-    while True:
-        ret, frame = cap.read()
-        if not ret:
-            break
+    if not user_id or not password or not name or embedding is None:
+        return jsonify({"status": "error", "message": "Missing required fields"}), 400
 
-        rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        results = face_mesh.process(rgb_frame)
-        frame = cv2.flip(frame, 1)
+    if os.path.exists(os.path.join(DATA_DIR, f"{user_id}.pkl")):
+        return jsonify({"status": "error", "message": "User ID already exists"}), 409
 
-        display_texts = []
+    user_data = {
+        "id": user_id,
+        "password": password,
+        "name": name,
+        "embedding": embedding
+    }
+    save_user_data(user_id, user_data)
+    return jsonify({"status": "success", "message": f"User {name} registered successfully"})
 
-        if results.multi_face_landmarks:
-            for facial_landmarks in results.multi_face_landmarks:
-                h, w, _ = frame.shape
+# 로그인 API
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.json
+    user_id = data.get("id")
+    password = data.get("password")
 
-                # Eye Blink Detection
-                EAR_THRESH, blink_start, current_state, calibration_message = detect_eye_blink(
-                    facial_landmarks, w, h, EAR_THRESH, SLEEP_TIME,
-                    CALIBRATION_TIME, calibration_start, calibration_ears, blink_start
-                )
+    if not user_id or not password:
+        return jsonify({"status": "error", "message": "Missing required fields"}), 400
 
-                # Head Turn Detection
-                head_direction = detect_head_turn(facial_landmarks, w, h)
+    user_data = load_user_data(user_id)
+    if not user_data:
+        return jsonify({"status": "error", "message": "User not found"}), 404
 
-                # Prepare Display Text
-                if calibration_message:
-                    display_texts.append(calibration_message)
-                display_texts.append(f"머리 방향: {head_direction}, 상태: {current_state}")
+    if user_data["password"] != password:
+        return jsonify({"status": "error", "message": "Incorrect password"}), 401
 
-        # Display all text without overlapping
-        for i, text in enumerate(display_texts):
-            frame = draw_text_kor(frame, text, (10, 30 + i * 40))
+    return jsonify({"status": "success", "message": "Password verified"})
 
-        # Show the frame
-        cv2.imshow("Test", frame)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
+# 얼굴 매칭 API
+@app.route('/verify-face', methods=['POST'])
+def verify_face():
+    data = request.json
+    user_id = data.get("id")
+    embedding = data.get("embedding")
 
-    cap.release()
-    cv2.destroyAllWindows()
+    if not user_id or embedding is None:
+        return jsonify({"status": "error", "message": "Missing required fields"}), 400
+
+    user_data = load_user_data(user_id)
+    if not user_data:
+        return jsonify({"status": "error", "message": "User not found"}), 404
+
+    stored_embedding = user_data["embedding"]
+    similarity = 1 - cosine(stored_embedding, embedding)
+
+    if similarity >= 0.7 :  # 유사도 기준
+        return jsonify({
+            "status": "success",
+            "message": "Face matched",
+            "name": user_data["name"]  # 사용자 이름 반환
+        })
+    else:
+        return jsonify({
+            "status": "error",
+            "message": "Face mismatch"
+        }), 401
+
 
 if __name__ == "__main__":
-    main()
+    app.run(host="0.0.0.0", port=9000)
