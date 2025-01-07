@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주차 별 학습 활동</title>
+    <link rel="stylesheet" href="../CSS/course_view.css">
+</head>
+<body>
+    <h1>주차 별 학습 활동</h1>
+    <div id="course-title"></div> <!-- 강의명 표시 -->
+    <ul id="activity-list" class="activity-list"></ul> <!-- 주차별 활동 표시 -->
+
+    <!-- 학생 모달 (얼굴 분석) -->
+<div id="face-analysis-modal" style="display: none;">
+    <div id="modal-content">
+        <h2 id="modal-course-title"></h2>
+        <div id="face-analysis-area">
+            <canvas id="face-canvas"></canvas>
+        </div>
+        <div id="session-info">
+            <h3>수업시간 / 쉬는 시간</h3>
+            <p id="session-time">실시간 점수: <span id="live-score">0</span></p>
+        </div>
+        <button id="close-modal">닫기</button>
+    </div>
+</div>
+
+<!-- 교수 모달 (학생 리스트 및 접속자 리스트) -->
+<div id="teacher-modal" style="display: none;">
+    <div id="teacher-modal-content">
+        <h2>수강생 리스트</h2>
+        <ul id="student-list"></ul>
+        <h3>접속자 리스트</h3>
+        <div id="attendee-list"></div>
+        <button id="class-open-close">강의 시작/종료</button>
+        <button id="close-teacher-modal">닫기</button>
+    </div>
+</div>
+    <script src="../src/js/courseView.js"></script>
+</body>
+</html>
+    

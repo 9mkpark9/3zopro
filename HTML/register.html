@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+  <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="form-container">
+      <h1>회원가입</h1>
+      <form>
+        <div class="input-group">
+          <label for="username">아이디</label>
+          <input type="text" id="username" placeholder="아이디를 입력하세요">
+        </div>
+        <div class="input-group">
+          <label for="password">비밀번호</label>
+          <input type="password" id="password" placeholder="비밀번호를 입력하세요">
+        </div>
+        <div class="input-group">
+          <label for="name">이름</label>
+          <input type="text" id="name" placeholder="이름을 입력하세요">
+        </div>
+        <div class="input-group">
+          <label for="department">학과</label>
+          <select id="department" required>
+          </select>
+        </div>
+        </div>
+                <!-- 학생 여부 입력 -->
+                <div class="input-group">
+                  <label for="student">학생 여부</label>
+                  <select id="student" required>
+                    <option value="true">학생</option>
+                    <option value="false">교직원</option>
+                  </select>
+                </div>
+                <!-- 얼굴 캡처 상태 표시 -->
+                <div id="capture-status" class="status"></div>
+        <button type="submit" class="btn" id="register-form">회원가입</button>
+        <!-- 닫기 버튼 추가 -->
+        <button type="button" id="close-btn" class="btn">닫기</button>
+      </form>
+    </div>
+  </div>
+  <script src="../src/js/register.js"></script>
+</body>
+</html>
