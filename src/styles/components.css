@@ -1,0 +1,1175 @@
+/* 로그인/회원가입 반응형 스타일 추가 */
+@media (max-width: 480px) {
+  .login-container {
+    padding: 0.5rem;
+  }
+  
+  .login-card {
+    padding: 1rem;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .radio-group {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+/* 입력 필드 포커스 효과 개선 */
+.form-group input:focus,
+.form-group select:focus {
+  box-shadow: 0 0 0 2px rgba(225, 78, 202, 0.3);
+}
+
+/* 버튼 호버 효과 개선 */
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* 로그인/회원가입 페이지 스타일 */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(45deg, var(--bg-dark), #1a1b3a);
+}
+
+.login-container {
+  width: 100%;
+  max-width: 450px;
+  padding: 2rem;
+  transition: all 0.5s ease;
+}
+
+.login-container.expanded {
+  max-width: 1200px;
+}
+
+.login-card {
+  position: relative;
+  background: var(--card-dark);
+  border-radius: 12px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  transition: all 0.5s ease;
+}
+
+/* 확장 시 애니메이션 */
+.login-card.expanded {
+  max-width: 1000px; /* 확장된 너비 */
+}
+
+/* 로그인 컨텐츠 컨테이너 */
+.login-content {
+  display: grid;
+  grid-template-columns: minmax(300px, 1fr) 0fr;
+  gap: 3rem;
+  transition: all 0.5s ease;
+}
+
+.login-card.expanded .login-content {
+  grid-template-columns: minmax(300px, 1fr) minmax(500px, 1.5fr);
+}
+
+/* 얼굴 인식 로그인 버튼 */
+.btn-face-login {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--card-dark);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--text-color);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.btn-face-login:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-2px);
+}
+
+.btn-face-login.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+/* 얼굴 인식 섹션 */
+.face-login-section {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.5s ease;
+  padding-left: 3rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  width: 0;
+}
+
+.login-card.expanded .face-login-section {
+  opacity: 1;
+  transform: translateX(0);
+  width: auto;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.login-header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+
+.login-header p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.login-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.login-form label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+
+.login-form label .material-icons {
+  margin-right: 0.5rem;
+  color: var(--primary);
+}
+
+.login-form input {
+  width: 100%;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  color: var(--text-color);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.login-form input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(225, 78, 202, 0.3);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.login-form .radio-group {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 1.5rem 0;
+}
+
+.login-form .radio-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.login-form .radio-label:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.login-form .radio-label input[type="radio"] {
+  width: auto;
+  margin-right: 0.5rem;
+}
+
+.btn-login {
+  width: 100%;
+  padding: 1rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(225, 78, 202, 0.4);
+}
+
+.btn-login:active {
+  transform: translateY(0);
+}
+
+.form-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.form-footer a {
+  color: var(--primary);
+  text-decoration: none;
+  margin-left: 0.5rem;
+  transition: color 0.3s;
+}
+
+.form-footer a:hover {
+  color: #f17edb;
+  text-decoration: underline;
+}
+
+/* 라이트 모드 스타일 */
+body.light-mode .login-card {
+  background: var(--card-light);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .login-form input {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: var(--text-color-light);
+}
+
+body.light-mode .login-form input:focus {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+body.light-mode .login-form .radio-label:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .form-footer {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+/* 반응형 스타일 */
+@media (max-width: 480px) {
+  .login-container {
+    padding: 1rem;
+  }
+  
+  .login-card {
+    padding: 1.5rem;
+  }
+  
+  .login-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .login-form .radio-group {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .login-form .radio-label {
+    justify-content: center;
+  }
+}
+
+/* 회원가입 폼 스타일 */
+.signup-form {
+  margin: 0 auto;
+}
+
+.signup-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.signup-form h3 {
+  color: var(--text-color);
+  margin: 2rem 0 1rem;
+  font-size: 1.2rem;
+}
+
+/* 얼굴 등록 버튼 스타일 수정 */
+.btn-face-capture {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--card-dark);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--text-color);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 0.5rem;
+}
+
+.btn-face-capture:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-2px);
+}
+
+.btn-face-capture.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+.btn-face-capture.completed {
+  background: var(--success);
+  border-color: var(--success);
+  color: white;
+  pointer-events: none;
+}
+
+.btn-face-capture .material-icons {
+  font-size: 1.2rem;
+}
+
+/* 얼굴 등록 섹션 스타일 수정 */
+.face-capture-section {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.5s ease;
+  padding-left: 3rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  width: 0;
+}
+
+.login-card.expanded .face-capture-section {
+  opacity: 1;
+  transform: translateX(0);
+  width: auto;
+}
+
+/* 캡처 컨테이너 스타일 */
+.capture-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.webcam-container {
+  aspect-ratio: 4/3;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.webcam-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.capture-preview {
+  display: none;
+  aspect-ratio: 4/3;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 캡처 버튼 스타일 */
+.capture-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.btn-capture {
+  width: 100%;
+  padding: 1rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.preview-actions {
+  display: none;
+  gap: 1rem;
+}
+
+.preview-actions.active {
+  display: flex;
+}
+
+/* 얼굴 등록 섹션 헤더 */
+.face-capture-section h2 {
+  font-size: 1.5rem;
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* 반응형 조정 */
+@media (max-width: 1200px) {
+  .login-container.expanded {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 992px) {
+  .login-container.expanded {
+    max-width: 350px;
+  }
+
+  .signup-content {
+    grid-template-columns: 1fr;
+  }
+
+  .login-card.expanded .signup-content {
+    grid-template-columns: 1fr;
+  }
+
+  .face-capture-section {
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-left: 0;
+    padding-top: 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .face-capture-section {
+    width: 90%;
+    padding: 1.5rem;
+  }
+}
+
+/* 오버레이 */
+.face-capture-overlay {
+  display: none;
+}
+
+/* 닫기 버튼 */
+.face-capture-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.face-capture-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* 반응형 */
+@media (max-width: 576px) {
+  .face-capture-section {
+    width: 95%;
+    height: 85vh;
+    padding: 1.5rem;
+  }
+
+  .face-guide {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+.capture-container {
+  margin: 0 auto;
+}
+
+.webcam-container {
+  position: relative;
+  aspect-ratio: 6/3;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+#signupWebcam {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.capture-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.2);
+}
+
+.face-guide {
+  text-align: center;
+}
+
+.guide-frame {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  margin: 0 auto;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 12px;
+}
+
+.guide-frame .corner {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #fff;
+}
+
+.guide-frame .top-left {
+  top: -2px;
+  left: -2px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.guide-frame .top-right {
+  top: -2px;
+  right: -2px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.guide-frame .bottom-left {
+  bottom: -2px;
+  left: -2px;
+  border-right: none;
+  border-top: none;
+}
+
+.guide-frame .bottom-right {
+  bottom: -2px;
+  right: -2px;
+  border-left: none;
+  border-top: none;
+}
+
+.guide-text {
+  color: #fff;
+  margin-top: 1rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  font-size: 0.9rem;
+}
+
+.capture-preview {
+  position: relative;
+  aspect-ratio: 4/3;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+#capturedImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.preview-actions {
+  position: absolute;
+  bottom: 1rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+
+.preview-actions .btn {
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(0,0,0,0.7);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.capture-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.capture-btn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.capture-btn:disabled {
+  background: #666;
+  cursor: not-allowed;
+}
+
+/* 애니메이션 */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255,255,255,0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255,255,255,0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255,255,255,0);
+  }
+}
+
+.guide-frame {
+  animation: pulse 2s infinite;
+}
+
+/* 라이트 모드 대응 */
+body.light-mode .face-capture-section {
+  background: rgba(0,0,0,0.03);
+}
+
+body.light-mode .webcam-container,
+body.light-mode .capture-preview {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .face-capture-section {
+    padding: 1rem;
+  }
+
+  .guide-frame {
+    width: 150px;
+    height: 150px;
+  }
+
+  .preview-actions {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1rem;
+  }
+
+  .preview-actions .btn {
+    width: 100%;
+  }
+}
+
+/* 반응형 디자인 개선 */
+@media (max-width: 576px) {
+  .login-container {
+    padding: 1rem;
+  }
+
+  .login-card {
+    padding: 1.5rem;
+  }
+
+  .face-capture-section {
+    padding: 1rem;
+    margin: 1rem 0 2rem;
+  }
+
+  .guide-frame {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+/* 회원가입 폼 입력 필드 스타일 */
+.signup-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.signup-form label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+  font-size: 0.95rem;
+}
+
+.signup-form label .material-icons {
+  margin-right: 0.5rem;
+  color: var(--primary);
+}
+
+.signup-form input[type="text"],
+.signup-form input[type="password"] {
+  width: 100%;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  color: var(--text-color);
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.signup-form input[type="text"]:focus,
+.signup-form input[type="password"]:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(225, 78, 202, 0.3);
+  background: rgba(255, 255, 255, 0.15);
+  outline: none;
+}
+
+.signup-form input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* 라이트 모드 대응 */
+body.light-mode .signup-form input[type="text"],
+body.light-mode .signup-form input[type="password"] {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: var(--text-color-light);
+}
+
+body.light-mode .signup-form input::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+body.light-mode .signup-form input[type="text"]:focus,
+body.light-mode .signup-form input[type="password"]:focus {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+/* 라디오 버튼 그룹 스타일 개선 */
+.signup-form .radio-group {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 1.5rem 0;
+}
+
+.signup-form .radio-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.signup-form .radio-label:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.signup-form .radio-label input[type="radio"] {
+  width: auto;
+  margin-right: 0.5rem;
+}
+
+/* 반응형 조정 */
+@media (max-width: 576px) {
+  .signup-form input[type="text"],
+  .signup-form input[type="password"] {
+    font-size: 0.9rem;
+    padding: 0.7rem;
+  }
+
+  .signup-form label {
+    font-size: 0.9rem;
+  }
+}
+
+/* 얼굴 등록 모달 스타일 */
+.face-capture-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--bg-dark);
+  z-index: 1000;
+  display: none;
+}
+
+.face-capture-modal.active {
+  display: flex;
+  animation: modalFadeIn 0.3s ease;
+}
+
+.face-capture-modal .modal-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.face-capture-modal .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: var(--card-dark);
+}
+
+.face-capture-modal .modal-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--text-color);
+}
+
+.face-capture-modal .close-modal {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+
+.face-capture-modal .close-modal:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.face-capture-modal .modal-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.face-capture-modal .capture-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.face-capture-modal .webcam-container,
+.face-capture-modal .capture-preview {
+  aspect-ratio: 4/3;
+  max-height: 70vh;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* 얼굴 등록 버튼 스타일 */
+#openFaceCapture {
+  position: relative;
+  overflow: hidden;
+}
+
+#openFaceCapture.active {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+#openFaceCapture .material-icons {
+  font-size: 1.2rem;
+}
+
+/* 얼굴 등록 버튼 완료 상태 */
+#openFaceCapture.completed {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+  pointer-events: none;
+}
+
+#openFaceCapture.completed .material-icons {
+  color: white;
+}
+
+/* 얼굴 등록 상태 텍스트 */
+.face-status {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-color);
+  opacity: 0.7;
+  text-align: center;
+}
+
+.face-status.required {
+  color: #fd5d93;
+}
+
+/* signup.html 전용 스타일 */
+.signup-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.signup-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  background: var(--card-dark);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.signup-form-section {
+  padding: 2rem;
+  border-right: 1px solid rgba(255,255,255,0.1);
+}
+
+.face-capture-section {
+  padding: 2rem;
+  background: rgba(0,0,0,0.2);
+}
+
+.face-capture-section h2 {
+  color: var(--text-color);
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.face-capture-section .capture-container {
+  margin-top: 2rem;
+}
+
+.face-capture-section .webcam-container,
+.face-capture-section .capture-preview {
+  aspect-ratio: 4/3;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.face-capture-section video,
+.face-capture-section img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.capture-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.preview-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 992px) {
+  .signup-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .signup-form-section {
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+}
+
+@media (max-width: 576px) {
+  .signup-container {
+    padding: 1rem;
+  }
+
+  .signup-grid {
+    gap: 1rem;
+  }
+
+  .signup-form-section,
+  .face-capture-section {
+    padding: 1.5rem;
+  }
+}
+
+/* 학과 선택 스타일 */
+.signup-form select {
+  width: 100%;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 4px;
+  color: var(--text-color);
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.7rem center;
+  background-size: 1em;
+  padding-right: 2.5rem;
+}
+
+.signup-form select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(225, 78, 202, 0.3);
+  background-color: rgba(255, 255, 255, 0.15);
+  outline: none;
+}
+
+/* 라이트 모드 대응 */
+body.light-mode .signup-form select {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: var(--text-color-light);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+}
+
+/* 오버레이 추가 */
+.face-capture-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.face-capture-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 닫기 버튼 추가 */
+.face-capture-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+
+.face-capture-close:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+/* 회원가입 카드가 오른쪽으로 이동하는 스타일 */
+.login-card.slide {
+  transform: translateX(420px);
+}
+
+/* 회원가입 폼 컨테이너 */
+.signup-form-container {
+  flex: 1;
+}
+
+/* 얼굴 등록 버튼 */
+.btn-face-capture {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--card-dark);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--text-color);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 0.5rem;
+}
+
+.btn-face-capture:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-2px);
+}
+
+.btn-face-capture.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+.btn-face-capture.completed {
+  background: var(--success);
+  border-color: var(--success);
+  color: white;
+  pointer-events: none;
+}
+
+/* 얼굴 등록 섹션 */
+.face-capture-section {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.5s ease;
+  padding-left: 3rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  width: 0;
+}
+
+.login-card.expanded .face-capture-section {
+  opacity: 1;
+  transform: translateX(0);
+  width: auto;
+} 
