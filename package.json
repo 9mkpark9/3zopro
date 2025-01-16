@@ -1,16 +1,42 @@
 {
-    "name": "my-electron-app",
-    "version": "1.0.0",
-    "main": "main.js",
-    "scripts": {
-      "start": "electron .",
-      "build": "electron-builder"  
-    },
-    "dependencies": {
-      "electron": "^24.0.0"
-    },
-    "devDependencies": {
-      "electron-builder": "^23.0.0"
-    }
+  "name": "c",
+  "version": "1.0.0",
+  "description": "First electron app",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "debug": "electron . --inspect",
+    "test": "echo \"Error: no test specified\" && exit1",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "watch": "webpack --config webpack.common.js --watch"
+  },
+  "author": "Jihoon",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-react": "^7.26.3",
+    "@electron-forge/cli": "^7.6.0",
+    "@electron-forge/maker-deb": "^7.6.0",
+    "@electron-forge/maker-rpm": "^7.6.0",
+    "@electron-forge/maker-squirrel": "^7.6.0",
+    "@electron-forge/maker-zip": "^7.6.0",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.6.0",
+    "@electron-forge/plugin-fuses": "^7.6.0",
+    "@electron/fuses": "^1.8.0",
+    "babel-loader": "^9.2.1",
+    "css-loader": "^7.1.2",
+    "electron": "^33.2.1",
+    "sass": "^1.83.0",
+    "sass-loader": "^16.0.4",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^6.0.1"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   }
-  
+}
