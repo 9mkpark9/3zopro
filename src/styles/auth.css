@@ -1,0 +1,1006 @@
+/* 로그인 페이지 스타일 */
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(45deg, var(--bg-dark), #1a1b3a);
+}
+
+.login-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 1rem;
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease-in-out;
+  margin: 0 auto;
+}
+
+.login-container.shifted {
+  transform: translateX(-10%);
+}
+
+.login-card {
+  background: rgba(39, 41, 61, 0.7);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  transform-origin: center;
+}
+
+.login-container.shifted {
+  transform: translateX(-10%);
+}
+
+.login-card {
+  background: rgba(39, 41, 61, 0.7);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.login-header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+  background: linear-gradient(45deg, var(--primary), #a239ea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+
+.login-header p {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 2rem;
+}
+
+.login-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.login-form label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.login-form .material-icons {
+  margin-right: 0.5rem;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"],
+.login-form select {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-color);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.login-form select option {
+  background: var(--card-dark);
+  color: var(--text-color);
+}
+
+.form-footer {
+  margin-top: 1.5rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.form-footer a {
+  color: var(--primary);
+  text-decoration: none;
+  margin-left: 0.5rem;
+}
+
+.form-footer a:hover {
+  text-decoration: underline;
+}
+
+/* 라이트 모드 스타일 */
+body.light-mode {
+  background: linear-gradient(45deg, var(--bg-light), #e6e9f0);
+}
+
+body.light-mode .login-card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .login-header h1,
+body.light-mode .signup-header h1 {
+  background: linear-gradient(45deg, var(--primary-light), #a239ea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body.light-mode .login-header p,
+body.light-mode .signup-header p {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+body.light-mode .login-form label,
+body.light-mode .signup-form label {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+body.light-mode .login-form input[type="text"],
+body.light-mode .login-form input[type="password"],
+body.light-mode .login-form select,
+body.light-mode .signup-form input[type="text"],
+body.light-mode .signup-form input[type="password"],
+body.light-mode .signup-form select {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.9);
+}
+
+body.light-mode .login-form input::placeholder,
+body.light-mode .signup-form input::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+body.light-mode .face-capture-section {
+  background-color: #f5f5f7;
+}
+
+body.light-mode .face-capture-section h2 {
+  color: #333;
+}
+
+body.light-mode .face-capture-section p {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+body.light-mode .face-guide .guide-text {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+body.light-mode .face-guide .guide-frame {
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+body.light-mode .radio-label {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+body.light-mode .face-status.required {
+  color: #E355E4;
+}
+
+body.light-mode .form-footer {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+body.light-mode .form-footer a {
+  color: var(--primary-light);
+}
+
+/* 테마 토글 버튼 스타일 */
+.theme-toggle {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  width: 42px;
+  height: 42px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-color);
+  cursor: pointer;
+  z-index: 1000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* 다크모드 아이콘 상태 */
+.theme-toggle .dark-icon {
+  position: absolute;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.3s ease;
+}
+
+.theme-toggle .light-icon {
+  position: absolute;
+  opacity: 1;
+  transform: scale(1);
+  transition: all 0.3s ease;
+}
+
+/* 라이트모드일 때 아이콘 상태 */
+body.light-mode .theme-toggle {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: var(--text-color-light);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .theme-toggle .dark-icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+body.light-mode .theme-toggle .light-icon {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+/* 호버 효과 */
+.theme-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+body.light-mode .theme-toggle:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.theme-toggle .material-icons {
+  font-size: 20px;
+}
+
+/* 에러 스타일 추가 */
+.error-message {
+  color: #ff4d4d;
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.login-form input.error {
+  border-color: #ff4d4d;
+}
+
+/* 라이트 모드에서의 에러 스타일 */
+body.light-mode .error-message {
+  color: #d63031;
+}
+
+/* 라디오 버튼 그룹 스타일 */
+.radio-group {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.radio-label:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.radio-label input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+}
+
+/* 버튼 스타일 */
+.btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-login, .btn-signup {
+    background: var(--primary);
+    color: white;
+    margin-top: 1rem;
+}
+
+.btn-login:hover, .btn-signup:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.btn-face-login {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn-face-login:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* 라이트 모드 버튼 스타일 */
+body.light-mode .btn-face-login {
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--text-color-light);
+}
+
+body.light-mode .btn-face-login:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* select 요소 스타일 수정 */
+.form-group select {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: calc(100% - 10px) center !important;
+  background-size: 24px !important;
+  padding-right: 40px !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* 라이트 모드에서의 select 화살표 */
+body.light-mode .form-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='%23000000'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") !important;
+  background-color: rgba(0, 0, 0, 0.03) !important;
+}
+
+/* Firefox에서 화살표 제거 */
+.form-group select::-ms-expand {
+  display: none;
+}
+
+/* Edge와 IE에서 화살표 제거 */
+select::-ms-expand {
+  display: none;
+}
+
+/* Webkit (Chrome, Safari) 화살표 제거 */
+
+
+/* select 옵션 스타일 */
+.form-group select option {
+  background-color: var(--card-dark);
+  color: var(--text-color);
+  padding: 10px;
+}
+
+body.light-mode .form-group select option {
+  background-color: var(--card-light);
+  color: var(--text-color-light);
+}
+
+/* 얼굴 등록 버튼 스타일 수정 */
+.btn-face-capture {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+.btn-face-capture:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* 라이트 모드에서의 얼굴 등록 버튼 */
+body.light-mode .btn-face-capture {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: var(--text-color-light);
+}
+
+body.light-mode .btn-face-capture:hover {
+  background: rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* 얼굴 등록 상태 메시지 */
+.face-status {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.face-status.required {
+  color: #ff4d4d;
+}
+
+body.light-mode .face-status.required {
+  color: #d63031;
+}
+
+/* 얼굴 등록 섹션 텍스트 색상 */
+.face-capture-section h2,
+.face-capture-section p {
+  color: var(--text-color);
+}
+
+body.light-mode .face-capture-section h2,
+body.light-mode .face-capture-section p {
+  color: var(--text-color-light);
+}
+
+/* 얼굴 등록 섹션 스타일 수정 */
+.face-capture-section {
+    position: fixed;
+    top: 0;
+    right: -500px; /* 초기 위치를 화면 밖으로 */
+    width: 100%;
+    max-width: 500px;
+    height: 100vh;
+    background: var(--card-dark);
+    padding: 2rem;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+}
+
+.face-capture-section.active {
+    right: 0;
+}
+
+.face-capture-section h2 {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.face-capture-section p {
+    color: var(--text-color);
+    margin-bottom: 2rem;
+}
+
+.webcam-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+#signupWebcam {
+    width: 100%;
+    height: auto;
+    transform: scaleX(-1);
+}
+
+.face-guide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.guide-frame {
+    width: 200px;
+    height: 200px;
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+}
+
+.guide-text {
+    margin-top: 1rem;
+    color: white;
+    text-align: center;
+}
+
+.capture-actions {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.capture-actions .btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: #E355E4;
+    color: white;
+    border: none;
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.preview-actions {
+    display: none;
+    gap: 1rem;
+}
+
+/* 라이트 모드 스타일 */
+body.light-mode .face-capture-section {
+    background: var(--card-light);
+}
+
+body.light-mode .face-capture-section h2,
+body.light-mode .face-capture-section p {
+    color: var(--text-color-light);
+}
+
+/* 오버레이 스타일 추가 */
+.face-capture-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+.face-capture-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 닫기 버튼 추가 */
+.face-capture-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.face-capture-close:hover {
+    color: var(--primary);
+}
+
+/* 얼굴 로그인 섹션 스타일 */
+.face-login-section {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    height: 100%;
+    width: 50%;
+    background-color: #1E1F2D;
+    padding: 2.5rem;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.face-login-section.active {
+    left: 50%;
+    opacity: 1;
+    visibility: visible;
+}
+
+.face-login-section h2 {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.face-login-section p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+/* 카메라 컨테이너 스타일 */
+.capture-container {
+    width: 100%;
+}
+
+.webcam-container {
+    width: 100%;
+    height: 220px;
+    background: #2A2B3B;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    position: relative;
+}
+
+/* face-recognition-container 관련 스타일 제거 */
+.face-recognition-container {
+    display: none; /* 또는 완전히 삭제 */
+}
+
+/* 로그인 카드 확장 효과 유지 */
+.login-card {
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.login-card.expanded {
+    width: 200%;
+    transform: translateX(-25%);
+}
+
+.login-form-container {
+    width: 100%;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.login-form-container.shifted {
+    transform: translateX(-5%);
+}
+
+/* 얼굴 인식 닫기 버튼 스타일 수정 */
+.face-login-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 20px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.face-login-close:hover {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 라이트 모드 스타일 추가 */
+body.light-mode .face-login-section {
+    background-color: #f5f5f7;  /* 밝은 배경색 */
+}
+
+body.light-mode .face-login-section h2 {
+    color: #333;  /* 어두운 텍스트 색상 */
+}
+
+body.light-mode .face-login-section p,
+body.light-mode .face-login-section .subtitle {
+    color: rgba(0, 0, 0, 0.7);  /* 반투명한 어두운 텍스트 */
+}
+
+body.light-mode .webcam-container {
+    background: #e8e8e8;  /* 밝은 배경의 웹캠 컨테이너 */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .face-login-close {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+body.light-mode .face-login-close:hover {
+    color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .face-guide .guide-text {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+body.light-mode .face-guide .guide-frame {
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* 회원가입 카드 확장 효과 */
+.signup-card {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    transform-origin: center;
+}
+
+.signup-card.expanded {
+    width: 200%;
+    transform: translateX(-25%);
+}
+
+/* 회원가입 폼 컨테이너 */
+.signup-form-container {
+    width: 100%;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.signup-form-container.shifted {
+    transform: translateX(-5%);
+}
+
+/* 얼굴 등록 섹션 */
+.face-register-section {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    height: 100%;
+    width: 50%;
+    background-color: #1E1F2D;
+    padding: 2.5rem;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.face-register-section.active {
+    left: 50%;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 얼굴 등록 닫기 버튼 */
+.face-register-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 20px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.face-register-close:hover {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 라이트 모드 스타일 */
+body.light-mode .face-register-section {
+    background-color: #f5f5f7;
+}
+
+body.light-mode .face-register-section h2 {
+    color: #333;
+}
+
+body.light-mode .face-register-section p,
+body.light-mode .face-register-section .subtitle {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+body.light-mode .face-register-close {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+body.light-mode .face-register-close:hover {
+    color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* 회원가입 페이지 스타일 */
+.signup-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 1rem;
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease-in-out;
+    margin: 0 auto;
+}
+
+.signup-card {
+    background: rgba(39, 41, 61, 0.7);
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    transform-origin: center;
+}
+
+.signup-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.signup-header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+    background: linear-gradient(45deg, var(--primary), #a239ea);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+}
+
+.signup-header p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 2rem;
+}
+
+/* 라이트 모드 스타일 */
+body.light-mode .signup-card {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .signup-header h1 {
+    background: linear-gradient(45deg, var(--primary-light), #a239ea);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+body.light-mode .signup-header p {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+/* 입력 필드 스타일 */
+.signup-form input[type="text"],
+.signup-form input[type="password"],
+.signup-form select {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-color);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+/* 폼 그룹 여백 조정 */
+.signup-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+/* 라디오 버튼 그룹 스타일 */
+.signup-form .radio-group {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* 버튼 스타일 */
+.signup-form .btn {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+/* 확장 시 스타일 */
+.signup-card.expanded {
+    width: 200%;
+    transform: translateX(-25%);
+}
+
+/* 얼굴 등록 섹션의 텍스트 스타일 */
+.face-capture-section h2 {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.face-capture-section p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* 얼굴 등록 완료 상태 스타일 */
+.face-status {
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+.face-status.required {
+    color: #E355E4;
+}
+
+.face-status.completed {
+    color: #4CAF50;
+}
+
+/* 웹캠 가이드 스타일 */
+.face-guide {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.guide-frame {
+    width: 200px;
+    height: 200px;
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+.guide-text {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+}
