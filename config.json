@@ -1,8 +1,0 @@
-{
-  "serverUrl": "220.90.180.95",
-  "serverPort": "9000",
-  "DBserverUrl": "220.90.180.95",
-  "DBserverPort": "3306",
-  "ReIDserverUrl": "220.90.180.95",
-  "ReIDserverPort": "5000"
-}
