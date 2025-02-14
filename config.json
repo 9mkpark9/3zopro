@@ -1,0 +1,10 @@
+{
+  "serverUrl": "10.101.160.18",
+  "serverPort": 9001,
+
+  "DBserverUrl": "10.101.160.18",
+  "DBserverPort": "9001",
+
+  "ReIDserverUrl": "10.101.160.18",
+  "ReIDserverPort": 9001
+}

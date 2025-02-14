@@ -1,0 +1,49 @@
+/* 스크롤바 스타일 */
+.courses-table tbody::-webkit-scrollbar {
+    width: 8px;
+}
+
+.courses-table tbody::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.courses-table tbody::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+.courses-table tbody::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* 라이트 모드 스타일 */
+body.light-mode .courses-table tbody::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .courses-table tbody::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .courses-table tbody::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.courses-table tbody {
+    display: block;
+    max-height: 250px; /* 각 행의 높이가 약 40px일 때 5개 행을 표시 */
+    overflow-y: auto;
+}
+
+.courses-table thead, .courses-table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed; /* 테이블 레이아웃 고정 */
+}
+
+.courses-table th, .courses-table td {
+    padding: 0.75rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
