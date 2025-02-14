@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>교수 대시보드</title>
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/dashboard.css">
+  <link rel="stylesheet" href="../styles/components.css">
+  <link rel="stylesheet" href="../styles/scrollbar.css">
+  <link rel="stylesheet" href="../styles/btn_cancel.css">
+  <link rel="stylesheet" href="../styles/weekly_grades.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <!-- Chart.js CDN 추가 -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+</head>
+<body>
+  <div class="wrapper">
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <img src="../assets/logo_w.png" alt="로고" class="logo light-logo">
+        <img src="../assets/logo_b.png" alt="로고" class="logo dark-logo">
+        <h2>교수 대시보드</h2>
+      </div>
+      <nav class="sidebar-nav">
+        <ul>
+          <li class="active" data-page="home">
+            <a href="#home">
+              <span class="material-icons">home</span>
+              홈
+            </a>
+          </li>
+          <li data-page="monitoring">
+            <a href="#monitoring">
+              <span class="material-icons">videocam</span>
+              실시간 모니터링
+            </a>
+          </li>
+          <li data-page="weekly-grades">
+            <a href="#weekly-grades">
+              <span class="material-icons">analytics</span>
+              집중도 점수 확인
+            </a>
+          </li>
+          <li data-page="grades">
+            <a href="#grades">
+              <span class="material-icons">grade</span>
+              성적 확인
+            </a>
+          </li>
+          <li data-page="register">
+            <a href="#register">
+              <span class="material-icons">school</span>
+              수업 등록
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="main-panel">
+      <nav class="navbar">
+        <div class="navbar-wrapper">
+          <div class="navbar-items">
+            <span class="material-icons">notifications</span>
+            <div class="profile-dropdown">
+              <span class="material-icons" id="profileBtn">person</span>
+              <div class="dropdown-content">
+                <div class="profile-info">
+                  <div class="profile-header">
+                    <span class="material-icons">account_circle</span>
+                    <h4>교수 정보</h4>
+                  </div>
+                  <div class="profile-details">
+                    <p><strong>이름:</strong> <span id="professorName">김교수</span></p>
+                    <p><strong>교수번호:</strong> <span id="professorId">P2024001</span></p>
+                    <p><strong>학과:</strong> <span id="department">윤준서</span></p>
+                    <p><strong>연구실:</strong> <span id="office">공학관 401호</span></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="settings-dropdown">
+              <span class="material-icons" id="settingsBtn">settings</span>
+              <div class="dropdown-content">
+                <div class="theme-switcher">
+                  <h4>테마 설정</h4>
+                  <div class="theme-options">
+                    <label>
+                      <input type="radio" name="theme" value="dark" checked>
+                      <span class="material-icons">dark_mode</span>
+                      다크 모드
+                    </label>
+                    <label>
+                      <input type="radio" name="theme" value="light">
+                      <span class="material-icons">light_mode</span>
+                      라이트 모드
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <div class="content">
+        <!-- 홈 페이지 -->
+        <div class="page active" id="home-page">
+          <!-- 상단 정보 카드 -->
+          <div class="info-cards">
+            <div class="profile-card">
+              <div class="profile-header">
+                <div class="profile-avatar">
+                  <span class="material-icons">account_circle</span>
+                </div>
+                <div class="profile-info">
+                  <h3></h3>
+                  <p class="professor-id"></p>
+                  <p class="department"></p>
+                  <p class="office"></p>
+                </div>
+              </div>
+              <div class="lecture-controls">
+                <button class="btn btn-start" id="startLecture">
+                  <span class="material-icons">play_circle</span>
+                  강의 시작
+                </button>
+                <button class="btn btn-end" id="endLecture">
+                  <span class="material-icons">stop_circle</span>
+                  강의 종료
+                </button>
+              </div>
+            </div>
+
+            <div class="status-card">
+              <div class="status-header">
+                <h3>현재 강의 상태</h3>
+                <span class="status-badge active">예정</span>
+              </div>
+              <div class="status-info">
+                <div class="status-item">
+                  <span class="label">현재 수업</span>
+                  <span class="value">-</span>
+                </div>
+                <div class="status-item">
+                  <span class="label">수업 시간</span>
+                  <span class="value" id="currentLectureTime">-</span>
+                </div>
+                <div class="status-item">
+                  <span class="label">경과 시간</span>
+                  <span class="value" id="elapsedTime">-</span>
+                </div>
+                <div class="status-item">
+                  <span class="label">수강 인원</span>
+                  <span class="value" id="attendance">-/-명</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 오늘의 수업 목록 -->
+          <div class="today-lectures">
+            <div class="card">
+              <div class="card-header">
+                <h3>오늘의 수업</h3>
+                <span class="date">2024년 3월 15일</span>
+              </div>
+              <div class="lecture-list">
+                <div class="lecture-item completed">
+                  <div class="time-slot">09:00 - 10:30</div>
+                  <div class="lecture-info">
+                    <h4>컴퓨터개론</h4>
+                    <p>공학관 401호 | 1학년 | 30명</p>
+                  </div>
+                  <div class="lecture-status">
+                    <span class="status-badge">완료</span>
+                  </div>
+                </div>
+
+                <div class="lecture-item active">
+                  <div class="time-slot">11:00 - 12:30</div>
+                  <div class="lecture-info">
+                    <h4>프로그래밍기초</h4>
+                    <p>공학관 402호 | 1학년 | 25명</p>
+                  </div>
+                  <div class="lecture-status">
+                    <span class="status-badge">진행중</span>
+                  </div>
+                </div>
+
+                <div class="lecture-item">
+                  <div class="time-slot">14:00 - 15:30</div>
+                  <div class="lecture-info">
+                    <h4>자료구조</h4>
+                    <p>공학관 403호 | 2학년 | 28명</p>
+                  </div>
+                  <div class="lecture-status">
+                    <span class="status-badge">예정</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 수업 등록 페이지 -->
+        <div class="page" id="register-page">
+          <div class="card">
+            <div class="card-header">
+              <h3>수업 등록</h3>
+            </div>
+            <div class="card-body">
+              <form id="class-register-form" onsubmit="return registerCourse(event)" class="course-register-form">
+                <!-- 과목 정보 -->
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>과목코드</label>
+                    <div class="input-with-icon">
+                      <span class="material-icons">code</span>
+                      <input type="text" id="courseCode" placeholder="예: CS101" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>과목명</label>
+                    <div class="input-with-icon">
+                      <span class="material-icons">book</span>
+                      <input type="text" id="courseName" placeholder="예: 컴퓨터개론" required>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- 수업 기간 -->
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>개강일</label>
+                    <div class="input-with-icon">
+                      <span class="material-icons">calendar_today</span>
+                      <input type="date" id="startDate" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>종강일</label>
+                    <div class="input-with-icon">
+                      <span class="material-icons">calendar_today</span>
+                      <input type="date" id="endDate" required>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 수업 시간 -->
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>수업 시간</label>
+                    <div class="time-slot-inputs">
+                      <select id="daySelect" required>
+                        <option value="">요일 선택</option>
+                        <option value="월">월요일</option>
+                        <option value="화">화요일</option>
+                        <option value="수">수요일</option>
+                        <option value="목">목요일</option>
+                        <option value="금">금요일</option>
+                      </select>
+                      <div class="time-input-group">
+                        <input type="time" id="startTime" required>
+                        <span>~</span>
+                        <input type="time" id="endTime" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>수강정원</label>
+                    <div class="input-with-icon">
+                      <span class="material-icons">group</span>
+                      <input type="number" id="capacity" min="1" max="100" placeholder="예: 30" required>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary">등록하기</button>
+                  <button type="reset" class="btn btn-secondary">초기화</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- 성적 관리 페이지 -->
+        <div class="page" id="grades-page">
+          <div class="card">
+            <div class="card-header">
+              <h3>성적 확인</h3>
+              <div class="course-select">
+                <select id="courseSelect">
+                  <option value="">과목 선택</option>
+                </select>
+              </div>
+            </div>
+            <div class="card-body">
+              <table class="grades-table">
+                <thead>
+                  <tr>
+                    <th>학번</th>
+                    <th>이름</th>
+                    <th>과목명</th>
+                    <th>중간고사(30%)</th>
+                    <th>기말고사(30%)</th>
+                    <th>과제(20%)</th>
+                    <th>출석(20%)</th>
+                    <th>총점</th>
+                    <th>학점</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- 성적 데이터가 여기에 동적으로 추가됨 -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 성적 분포 차트 -->
+          <div class="card">
+            <div class="card-header">
+              <h3>성적 분포</h3>
+            </div>
+            <div class="card-body">
+              <canvas id="gradeDistributionChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- 집중도 점수 확인 페이지 -->
+        <div class="page" id="weekly-grades-page">
+          <div class="card">
+            <div class="card-header">
+              <h3>집중도 점수 확인</h3>
+              <div class="course-select">
+                <select id="weeklyGradeCourseSelect">
+                  <option value="">과목 선택</option>
+                </select>
+              </div>
+            </div>
+            <div class="card-body">
+              <table class="weekly-grades-table">
+                <thead>
+                  <tr>
+                    <th>학번</th>
+                    <th>이름</th>
+                    <th>과목명</th>
+                    <th>평균 집중도</th>
+                    <th>출석률</th>
+                    <th>상세보기</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- 데이터가 동적으로 추가됨 -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 학생별 상세 정보 모달 -->
+          <div class="modal" id="studentDetailModal">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>주차별 점수</h3>
+                    <span class="close-modal material-icons">close</span>
+                </div>
+                <div class="modal-body">
+                    <!-- 학생 정보 헤더 추가 -->
+                    <div class="student-info-header">
+                        <h4>
+                            <span id="studentName">-</span>
+                            <span class="student-id">(<span id="studentId">-</span>)</span>
+                        </h4>
+                        <span class="course-name" id="courseName">-</span>
+                    </div>
+                    <div class="weekly-data">
+                        <table class="weekly-detail-table">
+                            <thead>
+                                <tr>
+                                    <th>주차</th>
+                                    <th>날짜</th>
+                                    <th>집중도</th>
+                                    <th>출석 상태</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- 주차별 데이터가 동적으로 추가됨 -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="weeklyConcentrationChart"></canvas>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 실시간 모니터링 페이지 -->
+        <div id="monitoring-page" class="page">
+          <div class="monitoring-container">
+            <div class="group-selector">
+              <select id="groupSelect">
+                <option value="">전체 조 보기</option>
+                <option value="1">1조</option>
+                <option value="2">2조</option>
+                <option value="3">3조</option>
+                <option value="4">4조</option>
+              </select>
+            </div>
+
+            <div class="camera-grid">
+              <!-- 1조 -->
+              <div class="camera-feed">
+                <div class="camera-header">
+                  <h3>1조 - 공학관 401호</h3>
+                  <span class="status active">● Live</span>
+                </div>
+                <div class="camera-view">
+                  <img src="../assets/preview.jpg" alt="조별 미리보기" class="preview-image">
+                  <div class="camera-overlay">
+                    <span class="members-status">3/4 출석중</span>
+                  </div>
+                </div>
+                <div class="camera-footer">
+                  <div class="footer-info">
+                    <span class="members-count">3/4명 출석</span>
+                    <span class="location">공학관 401호</span>
+                  </div>
+                  <button class="btn btn-small btn-primary">상세정보</button>
+                </div>
+              </div>
+
+              <!-- 2조 -->
+              <div class="camera-feed disabled">
+                <div class="beta-overlay">
+                  <span class="beta-badge">Beta</span>
+                  <p>개발 진행중</p>
+                </div>
+                <div class="camera-header">
+                  <h3>2조 - 공학관 402호</h3>
+                  <span class="status inactive">● Offline</span>
+                </div>
+                <div class="camera-view">
+                  <img src="../assets/preview.jpg" alt="조별 미리보기" class="preview-image">
+                  <div class="camera-overlay">
+                    <span class="members-status">2/3 출석중</span>
+                  </div>
+                </div>
+                <div class="camera-footer">
+                  <div class="footer-info">
+                    <span class="members-count">2/3명 출석</span>
+                    <span class="location">공학관 402호</span>
+                  </div>
+                  <button class="btn btn-small btn-primary">상세정보</button>
+                </div>
+              </div>
+
+              <!-- 3조 -->
+              <div class="camera-feed disabled">
+                <div class="beta-overlay">
+                  <span class="beta-badge">Beta</span>
+                  <p>개발 진행중</p>
+                </div>
+                <div class="camera-header">
+                  <h3>3조 - 공학관 403호</h3>
+                  <span class="status inactive">● Offline</span>
+                </div>
+                <div class="camera-view">
+                  <img src="../assets/preview.jpg" alt="조별 미리보기" class="preview-image">
+                  <div class="camera-overlay">
+                    <span class="members-status">4/4 출석중</span>
+                  </div>
+                </div>
+                <div class="camera-footer">
+                  <div class="footer-info">
+                    <span class="members-count">4/4명 출석</span>
+                    <span class="location">공학관 403호</span>
+                  </div>
+                  <button class="btn btn-small btn-primary">상세정보</button>
+                </div>
+              </div>
+
+              <!-- 4조 -->
+              <div class="camera-feed disabled">
+                <div class="beta-overlay">
+                  <span class="beta-badge">Beta</span>
+                  <p>개발 진행중</p>
+                </div>
+                <div class="camera-header">
+                  <h3>4조 - 공학관 404호</h3>
+                  <span class="status inactive">● Offline</span>
+                </div>
+                <div class="camera-view">
+                  <img src="../assets/preview.jpg" alt="조별 미리보기" class="preview-image">
+                  <div class="camera-overlay">
+                    <span class="members-status">3/3 출석중</span>
+                  </div>
+                </div>
+                <div class="camera-footer">
+                  <div class="footer-info">
+                    <span class="members-count">3/3명 출석</span>
+                    <span class="location">공학관 404호</span>
+                  </div>
+                  <button class="btn btn-small btn-primary">상세정보</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="admin.js"></script>
+  <script src="class.js"></script>
+  <script src="home.js"></script>
+  <script src="grades.js"></script>
+  <script src="weekly_grades.js"></script>
+
+  <!-- 모달 추가 -->
+  <div class="camera-modal" id="detailModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2><span id="modalGroupTitle">1조</span> 실시간 모니터링</h2>
+        <span class="close-modal material-icons">close</span>
+      </div>
+      <div class="modal-body">
+        <div class="expanded-view">
+          <div class="main-camera">
+            <div class="camera-feed large">
+              <video id="modalCamera" autoplay muted playsinline></video>
+              <canvas id="detectionCanvas" class="detection-overlay"></canvas>
+            </div>
+          </div>
+          <div class="group-details">
+            <div class="details-section">
+              <h3>현재 출석 현황</h3>
+              <div class="attendance-stats">
+                <div class="stat-item">
+                  <span class="label">전체 인원</span>
+                  <span class="value" id="modalTotalMembers">4명</span>
+                </div>
+                <div class="stat-item">
+                  <span class="label">현재 출석</span>
+                  <span class="value" id="modalPresentMembers">3명</span>
+                </div>
+                <div class="stat-item">
+                  <span class="label">평균 체류시간</span>
+                  <span class="value" id="modalAvgDuration">2시간 30분</span>
+                </div>
+              </div>
+            </div>
+            <div class="details-section">
+              <h3>조원 현황</h3>
+              <div class="member-list" id="modalMemberList">
+                <div class="member-item">
+                  <div class="member-info">
+                    <span class="material-icons">account_circle</span>
+                    <div class="info">
+                      <span class="name">홍길동</span>
+                      <span class="student-id">2024001</span>
+                    </div>
+                  </div>
+                  <span class="status present">출석중</span>
+                </div>
+                <div class="member-item">
+                  <div class="member-info">
+                    <span class="material-icons">account_circle</span>
+                    <div class="info">
+                      <span class="name">김철수</span>
+                      <span class="student-id">2024002</span>
+                    </div>
+                  </div>
+                  <span class="status absent">미인식</span>
+                </div>
+              </div>
+            </div>
+            <div class="modal-card">
+                <h3>실시간 활동 로그</h3>
+                <div class="activity-log-container">
+                    <div id="modalActivityLog" class="activity-log">
+                        <!-- 로그 항목들이 여기에 동적으로 추가됨 -->
+                    </div>
+                </div>
+            </div>
+            <div class="details-section capture-section">
+              <h3>출석 캡처</h3>
+              <div class="capture-controls">
+                <button class="control-btn" id="captureBtn">
+                  <span class="material-icons">photo_camera</span>
+                  객체 캡처
+                </button>
+                <button class="control-btn" id="recognizeBtn">
+                  <span class="material-icons">face</span>
+                  객체 인식
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="dashboard-container">
+    <iframe id="backgroundProcess" style="display: none;"></iframe>
+  </div>

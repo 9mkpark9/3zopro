@@ -1,0 +1,183 @@
+:root {
+  --primary: #e14eca;
+  --bg-dark: #1e1e2f;
+  --card-dark: #27293d;
+  --text-color: #ffffff;
+  --sidebar-width: 260px;
+  
+  --bg-light: #f4f5f7;
+  --card-light: #ffffff;
+  --text-color-light: #2c2c2c;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-color);
+  min-height: 100vh;
+}
+
+/* 로그인 페이지 스타일 */
+body.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(45deg, var(--bg-dark), #1a1b3a);
+}
+
+/* 라이트 모드 스타일 */
+body.light-mode {
+  background: var(--bg-light);
+  color: var(--text-color-light);
+}
+
+body.light-mode.login-page {
+  background: linear-gradient(45deg, var(--bg-light), #e6e9f0);
+}
+
+/* 입력 필드 포커스 스타일 */
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary) !important;
+}
+
+/* 스크롤바 스타일 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+body.light-mode ::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+body.light-mode ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* 링크 스타일 */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 기본 테이블 스타일 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 0.75rem;
+  text-align: left;
+}
+
+/* 기본 폼 스타일 */
+input, select, button {
+  font-family: inherit;
+}
+
+/* 기본 버튼 스타일 */
+button {
+  cursor: pointer;
+}
+
+/* 기본 리스트 스타일 */
+ul, ol {
+  list-style: none;
+}
+
+/* 기본 헤딩 스타일 */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+/* 기본 마진 */
+p {
+  margin-bottom: 1rem;
+}
+
+/* 컨테이너 스타일 */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* 반응형 이미지 */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 유틸리티 클래스 */
+.text-center {
+  text-align: center;
+}
+
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }
+
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+
+/* 라이트 모드 프로필 카드 스타일 */
+body.light-mode .profile-header {
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .profile-avatar {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .profile-info h3::before,
+body.light-mode .profile-info .professor-id::before,
+body.light-mode .profile-info .student-id::before,
+body.light-mode .profile-info .department::before,
+body.light-mode .profile-info .office::before {
+  opacity: 0.6;
+  color: var(--text-color-light);
+}
+
+body.light-mode .profile-info h3,
+body.light-mode .profile-info .professor-id,
+body.light-mode .profile-info .student-id,
+body.light-mode .profile-info .department,
+body.light-mode .profile-info .office {
+  color: var(--text-color-light);
+} 
+
+.attendance-records
+{
+  padding: 1.5rem;
+}

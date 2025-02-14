@@ -1,0 +1,1154 @@
+/* 모달 스타일 */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.3s ease;
+  overflow-y: auto;
+}
+
+#gradeDetailModal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+#gradeDetailModal .modal-content {
+  background: var(--card-dark);
+  margin: 5% auto;
+  padding: 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 1200px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+#gradeDetailModal .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+#gradeDetailModal .modal-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+#gradeDetailModal .close {
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--text-color);
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+#gradeDetailModal .close:hover {
+  opacity: 1;
+}
+
+#gradeDetailModal .modal-body {
+  padding-top: 20px;
+}
+
+/* 라이트 모드 스타일 */
+body.light-mode #register-page .card,
+body.light-mode #grades-page .card {
+  background: var(--card-light);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode #register-page .card-header,
+body.light-mode #grades-page .card-header {
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+/* 모달 애니메이션 */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* 주차별 성적 그래프 스타일 */
+.weekly-grades-chart {
+  margin-top: 30px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
+.chart-container {
+  position: relative;
+  height: 300px;
+  width: 100%;
+}
+
+/* 라이트 모드 스타일 */
+body.light-mode .weekly-grades-chart {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.modal .modal-content {
+  background: var(--card-dark);
+  margin: 3% auto;
+  padding: 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 1200px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.modal .weekly-grades-card {
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.modal .weekly-grades-card .card-header {
+  padding: 20px;
+  background: var(--card-dark);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal .weekly-grades-card .card-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.modal .weekly-grades-card .card-body {
+  padding: 30px;
+}
+
+.modal .card-body {
+  padding: 30px;
+  overflow-x: auto;
+}
+
+.modal .grade-table {
+  min-width: 800px;
+}
+
+/* 스크롤바 스타일링 */
+.modal .weekly-grades-card::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal .weekly-grades-card::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.modal .weekly-grades-card::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.modal .weekly-grades-card::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* 라이트 모드 스크롤바 스타일 */
+body.light-mode .modal .weekly-grades-card::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .modal .weekly-grades-card::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+body.light-mode .modal .weekly-grades-card::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* 모달 테이블 정렬 스타일 */
+.modal .grade-table th,
+.modal .grade-table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.modal .grade-table .score-fraction {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.modal .grade-table .attendance-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.modal .grade-table .total-score {
+  font-weight: 500;
+}
+
+/* 테이블 컨테이너 스타일 */
+.modal .table-container {
+  max-height: calc(53px * 5 + 25px); /* 행 높이 * 6 + 헤더 높이 */
+  overflow-y: auto;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+/* 테이블 헤더 고정 */
+.modal .grade-table {
+  min-width: 800px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.modal .grade-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--card-dark);
+}
+
+.modal .grade-table th {
+  padding: 12px;
+  font-weight: 500;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal .grade-table td {
+  padding: 15px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* 테이블 행 호버 효과 */
+.modal .grade-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* 라이트 모드 테이블 스타일 */
+body.light-mode .modal .grade-table thead {
+  background: var(--card-light);
+}
+
+body.light-mode .modal .grade-table th {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .modal .grade-table td {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .modal .grade-table tbody tr:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* 테이블 스크롤바 스타일 */
+.modal .table-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal .table-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.modal .table-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.modal .table-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* 라이트 모드 스크롤바 스타일 */
+body.light-mode .modal .table-container::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .modal .table-container::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+body.light-mode .modal .table-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* 출석 상태 배지 스타일 */
+.attendance-badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.status-present {
+  background-color: rgba(76, 175, 80, 0.2);
+  color: #4CAF50;
+}
+
+.status-late {
+  background-color: rgba(255, 193, 7, 0.2);
+  color: #FFC107;
+}
+
+.status-absent {
+  background-color: rgba(244, 67, 54, 0.2);
+  color: #F44336;
+}
+
+.status-pending {
+  background-color: rgba(158, 158, 158, 0.2);
+  color: #9E9E9E;
+}
+
+/* 라이트 모드에서의 배지 스타일 */
+body.light-mode .status-present {
+  background-color: rgba(76, 175, 80, 0.1);
+  color: #2E7D32;
+}
+
+body.light-mode .status-late {
+  background-color: rgba(255, 193, 7, 0.1);
+  color: #F57F17;
+}
+
+body.light-mode .status-absent {
+  background-color: rgba(244, 67, 54, 0.1);
+  color: #D32F2F;
+}
+
+body.light-mode .status-pending {
+  background-color: rgba(158, 158, 158, 0.1);
+  color: #616161;
+}
+
+/* 페이지 공통 스타일 */
+.page {
+  padding: 30px;
+}
+
+/* 페이지별 그리드 레이아웃 */
+.dashboard-grid {
+  display: grid;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+/* 카드 기본 스타일 (다크 모드) */
+.card {
+  background: var(--card-dark);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+/* 카드 헤더 기본 스타일 (다크 모드) */
+.card-header {
+  padding: 20px;
+  background: var(--card-dark);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 12px;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+/* 테이블 기본 스타일 (다크 모드) */
+.courses-table th,
+.registered-courses-table th,
+.average-grade-table th {
+  background: rgba(225, 78, 202, 0.1);
+  color: var(--text-color);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.courses-table td,
+.registered-courses-table td,
+.average-grade-table td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-color);
+}
+
+.courses-table tr:hover,
+.registered-courses-table tr:hover,
+.average-grade-table tr:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* 라이트 모드 스타일 */
+body.light-mode .card {
+  background: var(--card-light);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .card-header {
+  background: var(--card-light);
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .card-header h3 {
+  color: var(--text-color-light);
+}
+
+body.light-mode .courses-table th,
+body.light-mode .registered-courses-table th,
+body.light-mode .average-grade-table th {
+  background: rgba(225, 78, 202, 0.05);
+  color: var(--text-color-light);
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .courses-table td,
+body.light-mode .registered-courses-table td,
+body.light-mode .average-grade-table td {
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+  color: var(--text-color-light);
+}
+
+body.light-mode .courses-table tr:hover,
+body.light-mode .registered-courses-table tr:hover,
+body.light-mode .average-grade-table tr:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+/* 모달 스타일 */
+body.light-mode .modal .modal-content {
+  background: var(--card-light);
+}
+
+/* 검색창 스타일 */
+.navbar-search {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.navbar-search input {
+  color: var(--text-color);
+}
+
+body.light-mode .navbar-search {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .navbar-search input {
+  color: var(--text-color-light);
+}
+
+/* 출석 상세 카드 스타일 */
+.attendance-detail-card {
+  background: var(--card-dark);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+
+.attendance-detail-card .card-header {
+  padding: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.attendance-detail-card .card-body {
+  padding: 20px;
+}
+
+.attendance-detail-card .card-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+/* 출석 상세 테이블 스타일 */
+.attendance-detail-card table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.attendance-detail-card th,
+.attendance-detail-card td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-color);
+}
+
+.attendance-detail-card th {
+  background: rgba(225, 78, 202, 0.1);
+  font-weight: 500;
+}
+
+.attendance-detail-card tr:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* 라이트 모드 스타일 */
+body.light-mode .attendance-detail-card {
+  background: var(--card-light);
+}
+
+body.light-mode .attendance-detail-card .card-header {
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .attendance-detail-card .card-header h3 {
+  color: var(--text-color-light);
+}
+
+body.light-mode .attendance-detail-card th,
+body.light-mode .attendance-detail-card td {
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+  color: var(--text-color-light);
+}
+
+body.light-mode .attendance-detail-card th {
+  background: rgba(225, 78, 202, 0.05);
+}
+
+body.light-mode .attendance-detail-card tr:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+/* weekly-grades-card 스타일 */
+.weekly-grades-card .card-header {
+  padding: 20px;
+  background: var(--card-dark);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.weekly-grades-card .card-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+/* weekly-grades-card 라이트 모드 스타일 */
+body.light-mode .weekly-grades-card .card-header {
+  background: var(--card-light);
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .weekly-grades-card .card-header h3 {
+  color: var(--text-color-light);
+}
+
+/* 기존 스타일 제거 또는 수정 */
+.modal .weekly-grades-card .card-header {
+  padding: 20px;  /* 패딩만 유지 */
+}
+
+/* 모든 테이블 공통 스타일 */
+.grade-table,
+.average-grade-table,
+.course-grade-table,
+.modal .grade-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: var(--card-dark);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 테이블 헤더 스타일 */
+.grade-table th,
+.average-grade-table th,
+.course-grade-table th,
+.modal .grade-table th {
+    background: rgba(225, 78, 202, 0.1);
+    color: var(--text-color);
+    font-weight: 600;
+    padding: 16px;
+    text-align: center;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 테이블 셀 스타일 */
+.grade-table td,
+.average-grade-table td,
+.course-grade-table td,
+.modal .grade-table td {
+    padding: 16px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+    vertical-align: middle;
+}
+
+/* 상세보기 버튼 컨테이너 정렬 */
+.average-grade-table td:last-child {
+    text-align: center;
+}
+
+/* 상세보기 버튼 스타일 수정 */
+.detail-btn {
+    min-width: 60px;
+    text-align: center;
+    font-weight: 500;
+    padding: 8px 16px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.detail-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 점수 표시 스타일 */
+.average-score {
+    font-weight: 500;
+    color: var(--primary);
+}
+
+body.light-mode .average-score {
+    color: var(--primary);
+}
+
+/* 라이트 모드 테이블 스타일 */
+body.light-mode .grade-table,
+body.light-mode .average-grade-table,
+body.light-mode .course-grade-table,
+body.light-mode .modal .grade-table {
+    background: var(--card-light);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .grade-table th,
+body.light-mode .average-grade-table th,
+body.light-mode .course-grade-table th,
+body.light-mode .modal .grade-table th {
+    background: rgba(225, 78, 202, 0.05);
+    color: var(--text-color-light);
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .grade-table td,
+body.light-mode .average-grade-table td,
+body.light-mode .course-grade-table td,
+body.light-mode .modal .grade-table td {
+    color: var(--text-color-light);
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+/* 테이블 호버 효과 */
+body.light-mode .grade-table tr:hover,
+body.light-mode .average-grade-table tr:hover,
+body.light-mode .course-grade-table tr:hover {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+/* 출석 통계 스타일 */
+.attendance-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    padding: 32px;
+}
+
+.stat-item {
+    background: var(--card-dark-hover);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.stat-icon .material-icons {
+    font-size: 24px;
+}
+
+/* 아이콘 색상 및 배경 */
+.stat-icon.present {
+    background: rgba(76, 175, 80, 0.1);
+    color: #4CAF50;
+}
+
+.stat-icon.late {
+    background: rgba(255, 152, 0, 0.1);
+    color: #FF9800;
+}
+
+.stat-icon.absent {
+    background: rgba(244, 67, 54, 0.1);
+    color: #F44336;
+}
+
+.stat-icon.pending {
+    background: rgba(158, 158, 158, 0.1);
+    color: #9E9E9E;
+}
+
+.stat-info {
+    flex: 1;
+}
+
+.stat-info h4 {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    font-weight: 500;
+}
+
+.stat-info .value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* 다크모드 스타일 */
+[data-theme="dark"] .stat-item {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+[data-theme="dark"] .stat-info h4 {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="dark"] .stat-info .value {
+    color: #ffffff;
+}
+
+/* 라이트모드 스타일 */
+[data-theme="light"] .stat-item {
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .stat-info h4 {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="light"] .stat-info .value {
+    color: #2c2c2c;
+}
+
+/* 호버 효과 */
+.stat-item:hover {
+    transform: translateY(-2px);
+}
+
+[data-theme="dark"] .stat-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="light"] .stat-item:hover {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+/* 반응형 그리드 */
+@media (max-width: 1200px) {
+    .attendance-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .attendance-stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 테이블 헤더 스타일 */
+.course-grade-table th {
+    padding: 12px 8px;
+    white-space: nowrap;
+}
+
+/* 출석 배지 스타일 */
+.attendance-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: bold;
+    display: inline-block;
+    min-width: 60px;
+    text-align: center;
+}
+
+.attendance-badge.status-present {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: #4CAF50;
+    border: 1px solid #4CAF50;
+}
+
+.attendance-badge.status-late {
+    background-color: rgba(255, 193, 7, 0.1);
+    color: #FFC107;
+    border: 1px solid #FFC107;
+}
+
+.attendance-badge.status-absent {
+    background-color: rgba(244, 67, 54, 0.1);
+    color: #F44336;
+    border: 1px solid #F44336;
+}
+
+.attendance-badge.status-pending {
+    background-color: rgba(158, 158, 158, 0.1);
+    color: #9E9E9E;
+    border: 1px solid #9E9E9E;
+}
+
+/* 과목별 성적 테이블 특화 스타일 */
+.course-grade-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: var(--card-dark);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.course-grade-table th {
+    background: rgba(225, 78, 202, 0.1);
+    color: var(--text-color);
+    font-weight: 600;
+    padding: 16px;
+    text-align: center;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.course-grade-table td {
+    padding: 16px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    vertical-align: middle;
+}
+
+/* 과목별 성적 점수 스타일 */
+.course-grade-table .score-value {
+    color: #E14ECA;  /* 핑크색 */
+    font-weight: 500;
+}
+
+.course-grade-table .score-total {
+    color: var(--text-color);  /* 기본 텍스트 색상 (흰색) */
+}
+
+/* 과목명과 학점 스타일 */
+.course-grade-table td:first-child,
+.course-grade-table td:last-child {
+    color: var(--text-color);
+}
+
+/* 라이트 모드에서의 텍스트 색상 */
+body.light-mode .course-grade-table .score-total {
+    color: var(--text-color-light);  /* 라이트 모드에서의 기본 텍스트 색상 */
+}
+
+/* 라이트 모드 스타일 */
+body.light-mode .course-grade-table {
+    background: var(--card-light);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .course-grade-table th {
+    background: rgba(225, 78, 202, 0.05);
+    color: var(--text-color-light);
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .course-grade-table td {
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+/* 테이블 호버 효과 */
+.course-grade-table tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+body.light-mode .course-grade-table tr:hover {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.registered-courses-table {
+    text-align: center;
+}
+
+.registered-courses-table td,
+.registered-courses-table th {
+    text-align: center;
+}
+
+/* 출석 통계 카드 스타일 */
+.attendance-overview-card {
+  background: linear-gradient(165deg, var(--card-dark) 0%, rgba(46, 46, 64, 0.95) 100%);
+  border-radius: 20px;
+  margin-bottom: 30px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+}
+
+.attendance-overview-card .card-header {
+  padding: 28px 32px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(45deg, 
+    rgba(225, 78, 202, 0.12), 
+    rgba(225, 78, 202, 0.05) 50%,
+    rgba(225, 78, 202, 0.02) 100%
+  );
+}
+
+.attendance-overview-card .card-header h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  letter-spacing: -0.5px;
+}
+
+.attendance-overview-card .card-header h3::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 28px;
+  background: linear-gradient(to bottom, #E14ECA, #ba2a9d);
+  border-radius: 4px;
+  box-shadow: 0 0 15px rgba(225, 78, 202, 0.5);
+}
+
+/* 출석 통계 그리드 */
+.attendance-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding: 32px;
+}
+
+.stat-item {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 18px;
+  padding: 28px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.stat-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent,
+    rgba(225, 78, 202, 0.3),
+    transparent
+  );
+}
+
+.stat-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.stat-icon::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 1.5px;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.15), 
+    rgba(255, 255, 255, 0.03)
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.stat-icon .material-icons {
+  font-size: 28px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* 아이콘 색상 및 배경 수정 */
+.stat-icon.present {
+  background: linear-gradient(135deg, 
+    rgba(76, 175, 80, 0.2), 
+    rgba(76, 175, 80, 0.05)
+  );
+  color: #4CAF50;
+}
+
+.stat-icon.late {
+  background: linear-gradient(135deg, 
+    rgba(255, 152, 0, 0.2), 
+    rgba(255, 152, 0, 0.05)
+  );
+  color: #FF9800;
+}
+
+.stat-icon.absent {
+  background: linear-gradient(135deg, 
+    rgba(244, 67, 54, 0.2), 
+    rgba(244, 67, 54, 0.05)
+  );
+  color: #F44336;
+}
+
+.stat-icon.pending {
+  background: linear-gradient(135deg, 
+    rgba(158, 158, 158, 0.2), 
+    rgba(158, 158, 158, 0.05)
+  );
+  color: #9E9E9E;
+}
+
+.stat-info {
+  flex: 1;
+}
+
+.stat-info h4 {
+  margin: 0;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 10px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.stat-info .value {
+  font-size: 1.85rem;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 라이트모드 스타일 */
+[data-theme="light"] .attendance-overview-card {
+  background: linear-gradient(165deg, #ffffff 0%, #f8f9fa 100%);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .stat-item {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .stat-info h4 {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="light"] .stat-info .value {
+  color: #2c2c2c;
+}
+
+/* 호버 효과 수정 */
+.stat-item:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+
+[data-theme="dark"] .stat-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="light"] .stat-item:hover {
+  background: #ffffff;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.stat-item:hover .stat-icon {
+  transform: scale(1.08);
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1200px) {
+  .attendance-stats {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 24px;
+  }
+  
+  .stat-item {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .attendance-stats {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+  
+  .attendance-overview-card .card-header {
+    padding: 24px;
+  }
+  
+  .stat-item {
+    padding: 20px;
+  }
+}
